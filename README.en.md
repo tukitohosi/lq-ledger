@@ -2,64 +2,43 @@
 
 [简体中文](README.md) | English
 
-## Overview
+**A personal expense tracker with no account and no network connection during everyday use.**
 
-L.Q Ledger is a fully offline personal expense tracker for Windows. It focuses on RMB spending and supports fast entry, category management, search and filters, monthly analytics, budgets, soft deletion, complete JSON backup and restore, and CSV reports. No account or network service is required.
+Record spending quickly, review categories and monthly trends, set budgets and keep your own backups.
 
-The current release is **v1.3.2**.
+The current Windows release is **1.3.2**. An Android ARM64 preview package is also available. [Download](https://github.com/tukitohosi/lq-ledger/releases/tag/v1.3.2)
 
-## Highlights
+## Features
 
-- Record an amount, category, location, and note with a compact entry flow.
-- Reuse recent categories, copy the previous entry, enter simple amount expressions, and create templates.
-- Filter records by month, keyword, category, date, or amount.
-- Recover records from soft deletion.
-- Review monthly category totals, previous-month comparisons, daily averages, highest-spend days, six-month trends, and budgets.
-- Customize categories, templates, locations, theme, and interface density.
-- Export complete JSON backups for recovery or migration and CSV files for reporting.
+- Fast entry with recent categories, location suggestions, copy-previous-entry, amount expressions and templates.
+- Filters for month, keyword, category, date and amount.
+- Category totals, previous-month comparisons, daily averages, highest-spend days and six-month trends.
+- Custom categories, category merging and category budgets.
+- Complete JSON backup and restore, CSV reports and optional rolling daily backups.
+- Light/dark themes, comfortable/compact layouts and keyboard controls.
 
 ## Install
 
-1. Open [Releases](https://github.com/LQ-FJUT/lq-ledger/releases).
-2. Download `L.Q记账_1.3.2_x64-setup.exe`.
-3. Run the installer and follow the prompts.
+Choose a package from the [v1.3.2 release](https://github.com/tukitohosi/lq-ledger/releases/tag/v1.3.2):
 
-The installer is unsigned, so Windows may show an unknown-publisher warning. Verify the SHA-256 value on the Release page before running it.
+- Windows x64: LQ-Ledger-1.3.2-x64-Setup.exe.
+- Android 7.0+ ARM64 preview: LQ-Ledger-1.3.2-Android-arm64-debug.apk.
 
-## Basic use
+If WebView2 is missing, setup can download it from Microsoft; everyday operation is offline.
 
-1. Enter an expense on the ledger page and save it; the form is ready for the next entry immediately.
-2. Use recent categories, templates, and copy-previous-entry to speed up repeated records.
-3. Search and filter the record list, or restore a soft-deleted entry.
-4. Review spending and budgets on the statistics page.
-5. Adjust categories, templates, locations, appearance, and density in Settings.
-6. Export a complete JSON backup regularly. CSV is intended for viewing in spreadsheet software and cannot restore the ledger.
+The Android package uses a Debug signing key and is a preview. Its Android build changes are not included in the v1.3.2 source tag. Use the platform-specific checksums on the release page.
 
-## Data and privacy
+## Data and limitations
 
-- Ledger data is stored in a local SQLite database, and normal operation does not connect to the internet.
-- External JSON is validated before restore, and the current ledger is backed up automatically first.
-- An optional rolling daily-backup directory is supported.
-- Normal uninstall does not intentionally delete application data.
-- Use a complete JSON export for migration between computers; do not copy the installation or build directories.
+The app is for one person's RMB expenses. Amounts are stored as integer cents in a local SQLite database.
+
+Use complete JSON exports for backups and migration. Restore automatically backs up the current ledger first. CSV is a report format and cannot restore the ledger. A normal Windows uninstall keeps application data; an optional daily-backup folder can be selected in Settings.
 
 ## Run from source
 
-You need Node.js, the Rust toolchain, and a Windows build environment.
+Requires Node.js, Rust and a Windows build environment.
 
-```powershell
+~~~powershell
 npm install
-npm test
-npm run build
 npm run desktop:dev
-```
-
-Build the Windows installer:
-
-```powershell
-npm run desktop:build
-```
-
-## Release status
-
-This repository contains the final source for v1.3.2, while the installer is distributed through GitHub Releases. Local tests, builds, and isolated smoke checks do not replace clean-Windows acceptance testing for first install, upgrade, offline startup, uninstall data retention, and WebView2 fallback behavior.
+~~~
